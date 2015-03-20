@@ -14,7 +14,7 @@ module.exports.register = function (plugin, options, next) {
     produces: 'json',
     info: {
       title: 'API',
-      description: 'RESTful API for iteracting with this service'
+      description: 'RESTful API for interacting with this service'
 
     },
     authorizations: {

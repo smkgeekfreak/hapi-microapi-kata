@@ -68,10 +68,29 @@ apiServer.register(
 
   function (err) {
     if (err) {
+      console.log('Problem registering collect-device-data plugin');
       throw err;
     }
   });
+/**
+ *
+ */
+apiServer.register(
+  {register: require('./plugins/publish-device-list')}, {
+    routes: {
+      prefix: '/publish'
+    }
+  },
 
+  function (err) {
+    if (err) {
+      console.log('Problem registering publish-device-list plugin');
+      throw err;
+    }
+  });
+/**
+ *
+ */
 apiServer.register({
     register: require('./plugins/swagger-docs'),
     options:{
@@ -83,6 +102,7 @@ apiServer.register({
 
   function (err) {
     if (err) {
+      console.log('Problem registering swagger-docs plugin');
       throw err;
     }
   });

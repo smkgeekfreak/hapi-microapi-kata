@@ -4,7 +4,7 @@
 module.exports.findById= {
     description: 'Get available by Id',
     notes: 'Returns by the id passed in the path',
-    tags: ['api'],
+    tags: ['api','logs'],
     handler: function (request, reply) {
       reply('Plugin '+request.method + " on " + request.path);
     }
