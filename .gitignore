@@ -1,0 +1,8 @@
+node_modules/
+.ebextensions/
+npm-debug.log
+.idea/
+/.DS_Store
+dist/
+coverage/
+bin/
