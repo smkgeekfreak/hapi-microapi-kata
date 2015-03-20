@@ -96,7 +96,8 @@ apiServer.register({
     options:{
       host:packFile.host,
       port:packFile.port,
-      version:packFile.version
+      version:packFile.version,
+      docsPath:'/docs/ui'
     }}, {
   },
 

@@ -1,14 +1,12 @@
 /**
- *
+ * Register Swagger api documentation
  * @type {exports}
  */
-//var PluginFuncs = require('./funcs');
-
 module.exports.register = function (plugin, options, next) {
   var swaggerOptions = {
     basePath: 'http://' + options.host + ':' + options.port,
     apiVersion: options.version,
-    documentationPath: '/docs/ui',
+    documentationPath: options.docsPath,
     endpoint: '/docs.json',
     payloadType: 'json',
     produces: 'json',
