@@ -11,9 +11,8 @@ module.exports.register = function (plugin, options, next) {
     payloadType: 'json',
     produces: 'json',
     info: {
-      title: 'API',
-      description: 'RESTful API for interacting with this service'
-
+      title: options.title,
+      description: options.description
     },
     authorizations: {
       type: 'basicAuth',
