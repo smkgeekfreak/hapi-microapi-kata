@@ -5,23 +5,27 @@
  * @type {*|exports}
  */
 var Hapi = require('hapi');
-var Tv = require('tv');
-var Good = require('good');
+var Boom = require('boom');
 
-var packFile = require('./package.json'),
-   swaggerOptions = {
-      basePath: 'http://' + packFile.host + ':' + packFile.port,
-      apiVersion: packFile.version
-   };
+// Load options from package.json
+var packFile = require('./package.json');
+var config = {
+   port : packFile.port
+};
+
 /**
  * create a hapi server
  */
-var apiServer = new Hapi.Server();
+var apiServer = new Hapi.Server({
+   // This configuration object will be accessible on the server object
+   // using server.settings.app - yes, even in your plugins!
+   app: config
+});
 /**
  * Configure hapi server connections
  */
 apiServer.connection({
-   host: packFile.host,
+   //host: packFile.host, // using this causes it not to work on docker
    port: packFile.port,
    labels: ['api']
 });
@@ -32,7 +36,8 @@ apiServer.route({
    method: 'GET',
    path: '/',
    handler: function (request, reply) {
-      reply("Index should be replaced");
+      //reply(Boom.unauthorized('Invalid path'));
+      reply.redirect('/docs/ui');
    },
    config: {}
 });
@@ -50,7 +55,7 @@ apiServer.register([
          }
       },
       {
-         register: Tv, options: {endpoint: '/awesome'}
+         register: require('tv'), options: {endpoint: '/awesome'}
       }
    ], function (err) {
       if (err) {
@@ -95,8 +100,6 @@ apiServer.register(
 apiServer.register({
       register: require('./plugins/swagger-docs'),
       options: {
-         host: packFile.host,
-         port: packFile.port,
          version: packFile.version,
          docsPath: '/docs/ui',
          title:'API title',
@@ -112,12 +115,25 @@ apiServer.register({
          throw err;
       }
    });
-/**
- * Start the hapiServer
- */
-apiServer.start(function () {
-   var path = require("path");
-   console.log("__dirname = %s", path.resolve(__dirname));
-   console.log('Server running at:', apiServer.info.uri);
-});
 
+apiServer.ext('onRequest', function (request, reply) {
+   // Change all requests to '/test'
+   //request.setUrl('/test');
+   console.log("onRequest called");
+   return reply.continue();
+});
+// If (!module.parent) {…} conditional makes sure that if the script is
+// being required as a module by another script, we don’t start the server.
+// This is done to prevent the server from starting when we’re testing it; with Hapi,
+// we don’t need to have the server listening to test it.
+if (!module.parent) {
+   // Start Hapi server
+   apiServer.start(function () {
+      var path = require("path");
+      console.log("__dirname = %s", path.resolve(__dirname));
+      console.log('Server running at:', apiServer.info.uri);
+      console.log('Server config\'d with :', apiServer.settings.app);
+   });
+}
+
+module.exports = apiServer;

@@ -12,7 +12,7 @@ module.exports.register = function (plugin, options, next) {
       notes: 'Returns a index',
       tags: ['api', 'index'],
       handler: function (request, reply) {
-        reply('plugin index');
+        reply('plugin index').code(200);
       }
     }
   });
@@ -24,7 +24,7 @@ module.exports.register = function (plugin, options, next) {
       notes: 'Returns a test swagger',
       tags: ['api'],
       handler: function (request, reply) {
-        reply('Plugin ' + request.method + " on " + request.path);
+        reply('Plugin ' + request.method + " on " + request.path).code(200);
       }
     }
   });

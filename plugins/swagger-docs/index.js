@@ -4,7 +4,6 @@
  */
 module.exports.register = function (plugin, options, next) {
   var swaggerOptions = {
-    basePath: 'http://' + options.host + ':' + options.port,
     apiVersion: options.version,
     documentationPath: options.docsPath,
     endpoint: '/docs.json',
@@ -13,6 +12,7 @@ module.exports.register = function (plugin, options, next) {
     info: {
       title: options.title,
       description: options.description
+
     },
     authorizations: {
       type: 'basicAuth',
