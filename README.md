@@ -49,17 +49,19 @@ interactive utilize the API endpoints
 + Create a new directory under the **/plugins**
 + Add 3 files
  + ***index.js*** - Contains the registration for the plugin
-    + ```javascript
-   module.exports.register = function (plugin, options, next) { ```
+     ```javascript
+   module.exports.register = function (plugin, options, next) { 
+   ```
    + Endpoint routes for the plugin Contains the registration for the plugin
-   + ```javascript
+    ```javascript
    plugin.route({
       method: 'PUT',
       path: '/{id}',
-      config: PluginFuncs.collectLogs
-   }); ```
+      config: PluginFuncs.collectData
+   }); 
+   ```
    + You need to have a route for each plugin for the index path for swagger to pick up the api in it's documentation
-   + ```javascript
+    ```javascript
   plugin.route({
     method: 'GET',
     path: '/',
@@ -74,11 +76,11 @@ interactive utilize the API endpoints
   });
 ```
  + ***funcs.js*** - Endpoint configuration and handlers
- + ```javascript
+  ```javascript
    module.exports.findAll = {
       description: 'Get all',
       notes: 'Returns all information. Can be filterd by an hour and minute passed in query string',
-      tags: ['api','device-list'],
+      tags: ['api','list'],
       handler: function (request, reply) {
           reply('Plugin ' + request.method + " on " + request.path + " with " + request.query.hour +
     " and " + request.query.minute );
@@ -89,7 +91,9 @@ interactive utilize the API endpoints
             minute: Joi.number().min(0).max(59)
          }
       }
-   }```
+   }
+   ```
  + ***package.json*** - Plugin meta information
-    + ```javascript
-   { "name": "publish-list", "version": "0.1.0" } ```
+     ```javascript
+   { "name": "publish-list", "version": "0.1.0" } 
+   ```
