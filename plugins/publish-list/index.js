@@ -1,6 +1,3 @@
-/**
- * Created by mbp-sm on 3/20/15.
- */
 var PluginFuncs = require('./funcs');
 
 module.exports.register = function (plugin, options, next) {

@@ -1,7 +1,7 @@
-web:
+hapiserver:
   build: .
   command: npm run debug
   ports:
-   - "10081:10081"
+   - "9011:9011"
   volumes:
    - .:/src

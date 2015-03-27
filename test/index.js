@@ -3,6 +3,7 @@ var Lab = require('lab');
 var BDD = require('./bdd');
 var lab = exports.lab = Lab.script();
 var Hapi = require('hapi');
+var server = require('../server');
 
 BDD.describe('Main Server', function () {
 

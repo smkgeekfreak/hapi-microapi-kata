@@ -1,6 +1,3 @@
-/**
- * Created by mbp-sm on 3/20/15.
- */
 var Joi = require('joi');
 
 module.exports.findAll = {

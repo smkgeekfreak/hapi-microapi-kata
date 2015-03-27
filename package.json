@@ -3,20 +3,18 @@
   "version": "0.1.0",
   "description": "Coding practice exercise to familiarize with baconjs integrated into hapi",
   "main": "server.js",
-  "port": "10081",
+  "port": "9011",
   "scripts": {
     "debug": "nodemon server.js",
     "test": "lab --colors --leaks ",
     "test-coverage": "lab -r html -o coverage.html"
   },
   "keywords": [
-    "bacon.js",
     "hapi.js"
   ],
   "author": "cOdeShag Hennessy",
   "license": "ISC",
   "dependencies": {
-    "baconjs": "^0.7.53",
     "boom": "^2.6.1",
     "glue": "^2.0.0",
     "good": "^5.1.2",

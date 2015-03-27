@@ -1,5 +1,4 @@
 /**
- *
  * Export defintions to match BDD style
  */
 var Code = require('code');

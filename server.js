@@ -68,13 +68,13 @@ apiServer.register([
  */
 apiServer.register(
    {
-      register: require('./plugins/collect-device-data')}, {
+      register: require('./plugins/collect-data')}, {
       routes: {
          prefix: '/collect'
       }
    }, function (err) {
       if (err) {
-         console.log('Problem registering collect-device-data plugin');
+         console.log('Problem registering collect-data plugin');
          throw err;
       }
    });
@@ -82,7 +82,7 @@ apiServer.register(
  *
  */
 apiServer.register(
-   {register: require('./plugins/publish-device-list')}, {
+   {register: require('./plugins/publish-list')}, {
       routes: {
          prefix: '/publish'
       }
@@ -90,7 +90,7 @@ apiServer.register(
 
    function (err) {
       if (err) {
-         console.log('Problem registering publish-device-list plugin');
+         console.log('Problem registering publish-list plugin');
          throw err;
       }
    });
@@ -102,8 +102,8 @@ apiServer.register({
       options: {
          version: packFile.version,
          docsPath: '/docs/ui',
-         title:'API title',
-         description: 'API for this service'
+         title:'Hapi microAPIs title',
+         description: 'Hapi microAPIs for this service'
       }
    }, {
       //Nothing
